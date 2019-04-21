@@ -1,95 +1,5 @@
 USE Restaurant
 
-CREATE TABLE Restaurante(
-	Restaurante_id int PRIMARY KEY not null,  
-	Nom_Restaurante varchar(45) not null,  
-	Telefono  int not null,  
-	Sucursal_r varchar(45) not null,
-	CHECK (Telefono>0)
-)
-
-
-SELECT * FROM Restaurante
-
-CREATE TABLE Mesa(
-	Restaurante_id int not null FOREIGN KEY (Restaurante_id) REFERENCES Restaurante(Restaurante_id), 
-	Area_Restaurante varchar(45) not null,
-	Mesa_id int PRIMARY KEY not null,  
-	#Personas varchar(45) not null,  
-	
-)
-
-	SELECT * FROM Mesa
-
-CREATE TABLE Cargo_Empleado(
-	Puesto varchar (45) PRIMARY KEY not null,  
-	Descripcionp text not null
-)
-  
-   SELECT * FROM Cargo_Empleado
-
-CREATE TABLE Turno(
-	Turno_id int PRIMARY KEY not null,  
-	Descripciont text not null,
-	
-)
-
-	SELECT * FROM Turno
-
-CREATE TABLE Empleado(
-	Empleado_id int PRIMARY KEY ,  
-	Nombre_emple varchar ( 30 ),
-	ApellidoE_p varchar ( 30 ),
-	ApellidoE_m varchar ( 30 ),  
-	TelefonoE int not null,  
-	DireccionE varchar (45) not null,
-	Mesa_id int not null FOREIGN KEY (Mesa_id) REFERENCES Mesa(Mesa_id),
-	Cargo_Empleado varchar (45) not null FOREIGN KEY (Cargo_Empleado) REFERENCES Cargo_Empleado(Puesto),  
-	Turno_id int not null FOREIGN KEY (Turno_id) REFERENCES Turno(Turno_id),
-	CHECK (TelefonoE>0)
-)
-
-	SELECT * FROM Empleado
-
-CREATE TABLE Cliente(
-	Cliente_us varchar (45) PRIMARY KEY not null, 
-	Mesa_id int not null FOREIGN KEY (Mesa_id) REFERENCES Mesa(Mesa_id),  
-	DireccionC varchar(45) not null,  
-	TelefonoC int not null,  
-	CHECK (TelefonoC>0)
-)
-
-	SELECT * FROM Cliente
-
-CREATE TABLE Menu(
-	Producto_id int PRIMARY KEY not null, 
-	Nombre_p varchar(45) not null,  
-	DescripcionP text not null,  
-	Precio money not null,
-) 
-
-	SELECT * FROM Menu
-
-CREATE TABLE Pedido(
-	Id_Pedido int PRIMARY KEY not null,  
-	ClienteP varchar (45) not null FOREIGN KEY (ClienteP) REFERENCES Cliente(Cliente_us),
-	ProductoP int not null FOREIGN KEY (ProductoP) REFERENCES Menu(Producto_id),
-	Direccion_Pedido varchar (45) not null,
-	Fecha_Pedido datetime not null
-)
-
-   SELECT * FROM Pedido
-
-CREATE TABLE Ticket(
-	Ticket_id int PRIMARY KEY not null,  
-	Restaurante_id int not null FOREIGN KEY (Restaurante_id) REFERENCES Restaurante(Restaurante_id),   
-	Mesa_id int not null FOREIGN KEY (Mesa_id) REFERENCES Mesa(Mesa_id),  
-	Menu_id int not null FOREIGN KEY (Menu_id) REFERENCES Menu(Producto_id), 
-	Fecha datetime
-)
-
-	SELECT * FROM Ticket
-
 
 	INSERT INTO Restaurante VALUES ('01','Crepe de Paris','82981164','San Nicolas')
 	INSERT INTO Restaurante VALUES ('02','Crepe de Paris','11696754','Apodaca')
@@ -99,7 +9,7 @@ CREATE TABLE Ticket(
 	INSERT INTO Restaurante VALUES ('06','Crepe de Paris','12592589','Santiago')
 	INSERT INTO Restaurante VALUES ('07','Crepe de Paris','18076455','Allende')
 	INSERT INTO Restaurante VALUES ('08','Crepe de Paris','12008374','Monterrey')
-	INSERT INTO Restaurante VALUES ('09','Crepe de Paris','18458058','Garcìa')
+	INSERT INTO Restaurante VALUES ('09','Crepe de Paris','18458058','GarcÃ¬a')
 	INSERT INTO Restaurante VALUES ('10','Crepe de Paris','11698753','Guadalajara')
 	SELECT * FROM Restaurante
 
@@ -188,7 +98,7 @@ CREATE TABLE Ticket(
 	INSERT INTO Menu VALUES ('7','Big Jack burgues','Hamburguesas','140')
 	INSERT INTO Menu VALUES ('8','Buffalo Ranch Chicken','Hamburguesas','159')
 	INSERT INTO Menu VALUES ('9','Pasta c/camarones','Pastas','175')
-	INSERT INTO Menu VALUES ('10','Pasta c/champiñones','Pastas','140')
+	INSERT INTO Menu VALUES ('10','Pasta c/champiÃ±ones','Pastas','140')
 	INSERT INTO Menu VALUES ('11','Lasagna','Pastas','180')
 	INSERT INTO Menu VALUES ('12','Agua','Bebida 500 ml','40')
 	INSERT INTO Menu VALUES ('13','Refresco','Bebida 500 ml','50')
